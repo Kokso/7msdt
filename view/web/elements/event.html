@@ -1,0 +1,5 @@
+<h2>{{event.title}}</h2>
+<div ng-bind-html="event.content | sanitize" class="eventContent"></div>
+<a ng-repeat="image in event.galery track by $index" ng-href="{{image.imagePath}}" class="gallery" target="_blank">
+    <img ng-src="{{image.thumbPath}}" atl="" />
+</a>

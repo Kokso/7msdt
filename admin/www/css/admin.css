@@ -1,0 +1,192 @@
+html, body { 
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body { 
+    display: block;
+    height: 100%;
+}
+
+.page {
+    width: 80%;
+    margin: auto auto;
+}
+
+.login {
+    padding-top: 15%;
+    width: 420px;
+    margin: auto auto;
+}
+
+.navigation {
+    width: 20%;
+    min-width: 150px;
+    float: left;
+}
+
+.content {
+    padding: 0 30px;
+    width: 80%;
+    display: block;
+    float: left;
+}
+
+#inputEmp1 {
+    margin-bottom: 3px;
+}
+
+.inlineRadio {
+    display: inline-block;
+    padding-bottom: 20px;
+    margin-left: 30px
+}
+
+.inlineRadio label {
+    text-align: center;
+    padding-left: 0
+}
+
+.inlineRadio img {
+    margin-left: -20px;
+}
+
+.table_icon {
+    width: 30px;
+}
+
+.modal {
+    display: block;
+}
+
+div.modal {
+    background-color: rgba(0,0,0,0.8);
+}
+
+.modal-dialog {
+    width: 80%;
+    max-width: 1000px;
+    max-height: 800px;
+    position: static;
+}
+
+.modal-dialog .ms-progress {
+    width: 50%;
+    margin: auto auto;
+}
+
+.modal-dialog .inline {
+    display: inline-block;
+}
+
+.modal-body {
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.modal-footer .gallery {
+    text-align: center;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.modal-footer .gallery .image{
+    display: inline-block;
+    position: relative;
+}
+
+.modal-footer .gallery .image button{
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    padding: 0 0 0 0;
+    width: 24px;
+    height: 24px;
+}
+
+.modal-footer .gallery img {  
+    border: solid 1px #2fa4e7;
+    margin: 5px;
+}
+
+
+.reorder {
+    width: 50%;
+    float: left;
+}
+
+.inline {
+    width: 45%;
+    float: left;
+    margin-left: 5%
+}
+
+.reorder strong {
+    margin-right: 4%;
+}
+
+/**
+ * For the correct positioning of the placeholder element, the dnd-list and
+ * it's children must have position: relative
+ */
+.reorder ul[dnd-list],
+.reorder ul[dnd-list] > li {
+	position: relative;
+}
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+.reorder ul[dnd-list] {
+    min-height: 42px;
+    padding-left: 0px;
+}
+
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+.reorder ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+.reorder ul[dnd-list] .dndPlaceholder {
+    display: block;
+    background-color: #ddd;
+    min-height: 42px;
+}
+
+/**
+ * The dnd-lists's child elements currently MUST have
+ * position: relative. Otherwise we can not determine
+ * whether the mouse pointer is in the upper or lower
+ * half of the element we are dragging over. In other
+ * browsers we can use event.offsetY for this.
+ */
+.reorder ul[dnd-list] li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+}
+
+.reorder ul[dnd-list] li:hover {
+    background-color: #2fa4e7;
+    color: #fff;
+}

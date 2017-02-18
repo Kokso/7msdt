@@ -1,0 +1,45 @@
+<script>
+    $(document).ready(function () {
+        InitSummernote();
+    });
+</script>
+<h3>Kontakty</h3><hr>
+<div class="well">
+    <form class="form-horizontal">
+        <fieldset>
+            <div class="form-group">
+                <label for="inputAddress1" class="col-lg-2 control-label">Adresa</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputAddress1" name="addressName" ng-model="address.name" required="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress2" class="col-lg-2 control-label"></label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputAddress2" name="addressStreet" ng-model="address.street" required="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress3" class="col-lg-2 control-label"></label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputAddress3" name="addressCity" ng-model="address.city" required="" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-2 control-label">Ďalšie kontaktné údaje</label>
+                <div class="col-lg-10">
+                    <div class="summernote" id="inputText"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary" ng-click="saveContacts()">Uložiť</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="alert alert-dismissible alert-success" ng-show="infoMessage" ng-bind-html="infoMessage | sanitize">
+</div>
+<div class="alert alert-dismissible alert-danger" ng-show="errMessage" ng-bind-html="errMessage | sanitize">
+</div>

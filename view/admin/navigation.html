@@ -1,0 +1,24 @@
+<div class="list-group" ng-show="!isLoginPage">
+    <span class="list-group-item active panel-title">O nás</span>
+    <a href="#/Onas" class="list-group-item">Trošku o nás</a>
+    <a href="#/Rada" class="list-group-item">Rada školy</a>
+    <a href="#/Triedy" class="list-group-item">Zamestnanci a pani učiteľky</a>
+    <a href="#" class="list-group-item">Aktivity</a>
+    <a href="#/Projekty" class="list-group-item">Projekty</a>
+    <span class="list-group-item"></span>
+    <span class="list-group-item active panel-title">Oznamy</span>
+    <a href="#/Oznamy" class="list-group-item">Oznamy</a>
+    <span class="list-group-item"></span>
+    <span class="list-group-item active panel-title">Podujatia</span>
+    <a href="#/Podujatia/Trieda/-1" class="list-group-item">Spoločné pre všetky triedy</a>
+    <a href="#/Podujatia/Trieda/{{class.id}}" class="list-group-item" ng-repeat="class in classes track by $index">{{class.className}}</a>
+    <a href="#/Podujatia/Archiv" class="list-group-item">Archív</a>
+    <span class="list-group-item"></span>
+    <span class="list-group-item active panel-title">Zverejňovanie</span>
+    <a href="#/Zverejnovanie/Zmluvy" class="list-group-item">Zmluvy</a>
+    <a href="#/Zverejnovanie/Faktury" class="list-group-item">Faktúry</a>
+    <span class="list-group-item"></span>
+    <span class="list-group-item active panel-title">Kontakty</span>
+    <a href="#/Kontakty" class="list-group-item">Kontakty</a>
+    <span class="list-group-item"></span>
+</div>

@@ -1,0 +1,30 @@
+<div class ="login">
+    <form class="form-horizontal" name="loginForm">
+        <fieldset>   
+            <legend><h1>Admin</h1>MŠ A.Bernoláka v Detve</legend>
+            <div class="form-group">
+                <label for="inputEmail" class="col-lg-2 control-label">Meno</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" placeholder="Meno" ng-model="user.Name" name="name" required>
+                    <p class="text-danger" ng-show="loginForm.name.$error.required">Meno je povinné.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputPassword" class="col-lg-2 control-label">Heslo</label>
+                <div class="col-lg-10">
+                    <input type="password" class="form-control" placeholder="Heslo" ng-model="user.Password" name="password" required>
+                    <p class="text-danger" ng-show="loginForm.password.$error.required">Heslo je povinné.</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary" ng-click="login(user)">Prihlásiť sa</button>
+                </div>
+            </div>
+            
+            <div class="alert alert-dismissible alert-danger" ng-show="error">
+                {{error}}
+            </div>
+        </fieldset>
+    </form>
+</div>

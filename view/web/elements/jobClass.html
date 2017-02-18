@@ -1,0 +1,4 @@
+<img ng-src="{{jobClass.image}}" class="icon">
+<h2>{{jobClass.name}}</h2>
+<h3 ng-show="jobClass.empTitle!=null && jobClass.empTitle!=''">( {{jobClass.empTitle}} )</h3>
+<span ng-repeat="employee in jobClass.employees track by $index">{{employee}}<br></span>

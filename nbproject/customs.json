@@ -1,0 +1,16 @@
+{
+    "elements": {
+        "legend": {}
+    },
+    "attributes": {
+        "footer": {
+            "context": "div"
+        },
+        "dnd-list": {
+            "context": "ul"
+        },
+        "tooltip": {
+            "context": "a"
+        }
+    }
+}

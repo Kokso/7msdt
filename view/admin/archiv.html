@@ -1,0 +1,36 @@
+
+<div ng-show="isModalShown" class="modal">
+    <div class="modal-dialog" ng-include="modalDialog">
+
+    </div>
+</div>
+
+<h3>Archív</h3><hr>
+<div class="alert alert-dismissible alert-warning">
+    <h4>Pozor!</h4>
+    <p>V prípade potvrdenia archivácie budú všetky existujúce podujatia nenávratne archivované. Archivovať by sa malo na konci školského roku alebo pred začiatkom nového školského roku.</p>
+</div>
+<div class="well">
+    <form class="form-horizontal" name="formArchiv" novalidate>
+        <fieldset>
+            <div class="form-group">
+                <label for="inputArchiv" class="col-lg-2 control-label">Názov archívu</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputArchiv" name="archivName" ng-model="archiv.name" required="" />
+                    <span class="text-danger" ng-show="submitted && formArchiv.archivName.$error.required">Názov musí byť vyplnený</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="submit" class="btn btn-primary" ng-click="toggleModal(formArchiv)">Archivovať</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="alert alert-dismissible alert-success" ng-show="infoMessage" ng-bind-html="infoMessage | sanitize">
+</div>
+<div class="alert alert-dismissible alert-danger" ng-show="errMessage" ng-bind-html="errMessage | sanitize">
+</div>
+
+

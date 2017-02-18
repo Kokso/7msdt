@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ modalTitle}}</h4>
+</div>
+<form class="form-horizontal" name="formDoc" novalidate>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="inputTitle" class="col-lg-2 control-label">Názov</label>
+            <div class="col-lg-10">
+                <input type="text" class="form-control" id="inputTitle" name="docTitle" ng-model="doc.title" required="" ng-disabled="fileSending">
+                <span class="text-danger" ng-show="submitted && formDoc.docTitle.$error.required">Názov musí byť vyplnený</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputOrder" class="col-lg-2 control-label">Poradie</label>
+            <div class="col-lg-10">
+                <input type="number" class="form-control" id="inputOrder" name="docOrder" ng-model="doc.order" min="1" required="" ng-disabled="fileSending">
+                <span class="text-danger" ng-show="submitted && formDoc.docOrder.$error.required">Poradie musí byť vyplnené</span> 
+                <span class="text-danger" ng-show="submitted && formDoc.docOrder.$error.number">Zadaný reťazec musí byť číslo</span>
+            </div>
+        </div> 
+        <div class="form-group" ng-hide="hideFileChooser">
+            <label for="inputFile" class="col-lg-2 control-label">Súbor</label>
+            <div class="col-lg-10">
+                <input type="file" class="form-control" id="inputFile" name="docFile" onchange="angular.element(this).scope().changeFile(this)" ng-disabled="fileSending">
+                <span class="text-danger" ng-show="submitted && !fileLoaded">Nie je vybraný žiadny súbor</span>
+            </div>
+        </div> 
+
+        <div class="ms-progress" ng-show="fileSending">
+            Súbor sa odosiela ...
+            <div class="progress progress-striped active">
+                <div class="progress-bar" style="width: 100%"></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="toggleModal()" ng-disabled="fileSending">Zrušiť</button>
+        <button type="submit" class="btn btn-primary" ng-click="saveDoc(formDoc)"  ng-disabled="fileSending">Uložiť</button>
+    </div>
+</form>

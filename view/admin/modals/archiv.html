@@ -1,0 +1,14 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">{{ modalTitle}}</h4>
+    </div>
+    <form class="form-horizontal" novalidate>
+        <div class="modal-body">
+            <p><i class="fa fa-exclamation-triangle fa-2x" aria-hidden="true"></i> V prípade potvrdenia archivácie budú všetky existujúce podujatia nenávratne archivované.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" ng-click="closeModal()">Nie</button>
+            <button type="submit" class="btn btn-primary" ng-click="doArchive()">Áno</button>
+        </div>
+    </form>
+</div>

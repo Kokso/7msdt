@@ -1,0 +1,82 @@
+<script>
+    $(document).ready(function () {
+        InitSummernote();
+    });
+</script>
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">{{ modalTitle}}</h4>
+    </div>
+    <form class="form-horizontal" name="formNote" novalidate>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="inputTitle" class="col-lg-2 control-label">Nadpis</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputTitle" name="noteTitle" ng-model="note.title" required="">
+                    <span class="text-danger" ng-show="submitted && formNote.noteTitle.$error.required">Názov musí byť vyplnený</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputText" class="col-lg-2 control-label">Text oznamu</label>
+                <div class="col-lg-10">
+                    <div class="form-control summernote" id="inputText"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="select" class="col-lg-2 control-label">Farba</label>
+                <div class="col-lg-10">
+                    <select class="form-control" id="select" ng-model="note.color">
+                        <option value=0>Červená</option>
+                        <option value=1>Žltá</option>
+                        <option value=2>Zelená</option>
+                        <option value=3>Modrá</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputOrder" class="col-lg-2 control-label">Poradie</label>
+                <div class="col-lg-10">
+                    <input type="number" class="form-control" id="inputOrder" name="noteOrder" min="1" ng-model="note.order" required="">
+                    <span class="text-danger" ng-show="submitted && formNote.noteOrder.$error.required">Poradie musí byť vyplnené</span> 
+                    <span class="text-danger" ng-show="submitted && formNote.noteOrder.$error.number">Zadaný reťazec musí byť číslo</span>
+                </div>
+            </div>
+            <hr/>
+            <div class="form-group" ng-show="!fileSending && fileLoaded">
+                <label for="filePath" class="col-lg-2 control-label">Odkaz k súboru</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="filePath" ng-model="noteFile" readonly>
+                </div>
+            </div>
+            <div class="form-group" ng-hide="hideFileChooser">
+                <label for="inputFile" class="col-lg-2 control-label">Súbor</label>
+                <div class="col-lg-10">
+                    <input type="file" class="form-control" id="inputFile" name="docFile" onchange="angular.element(this).scope().changeFile(this)" ng-disabled="fileSending">
+                    <span class="text-danger" ng-show="submitted && !fileLoaded">Nie je vybraný žiadny súbor</span>
+                </div>
+            </div> 
+            <div class="form-group">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-10">
+                    <button type="submit" class="btn btn-primary" ng-click="saveNoteFile()">Odoslať</button>
+                </div>
+            </div>
+
+            <div class="ms-progress" ng-show="fileSending">
+                Súbor sa odosiela ...
+                <div class="progress progress-striped active">
+                    <div class="progress-bar" style="width: 100%"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="form-group">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-10">
+                    <button type="button" class="btn btn-default" ng-click="toggleModal()">Zrušiť</button>
+                    <button type="submit" class="btn btn-primary" ng-click="saveNote(formNote)">Uložiť</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

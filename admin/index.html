@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin - Materská škola A.Bernoláka v Detve</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/cerulean/bootstrap.min.css">
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+        <link rel="stylesheet" media="screen,projection,tv" href="./www/css/admin.css">
+        <link rel="stylesheet" href="./www/summernote/summernote.css" rel="stylesheet">
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="./www/summernote/summernote.min.js"></script>
+        <script type="text/javascript" src="./www/summernote/lang/summernote-sk-SK.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-resource.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-sanitize.min.js"></script>
+        <script type="text/javascript" src="./www/js/core-min.js"></script>
+        <script type="text/javascript" src="./www/js/sha256-min.js"></script>
+        <script type="text/javascript" src="./www/js/angular-drag-and-drop-lists.min.js"></script>
+        <script type="text/javascript" src="./www/js/appAdmin.js"></script>
+        <script type="text/javascript" src="./www/js/appAdmin_controlers.js"></script>
+        <script type="text/javascript" src="./www/js/summernoteInit.js"></script>
+
+
+    </head>
+    <body  ng-app="appAdmin">
+        <div class="page">
+            <admin-header>
+
+            </admin-header>          
+        </div>
+        <div class="page">
+            <div class="navigation">
+                <admin-navigation>
+
+                </admin-navigation>  
+            </div>
+
+            <div class="content" ng-view>
+
+            </div>
+        </div>
+    </body>
+</html>

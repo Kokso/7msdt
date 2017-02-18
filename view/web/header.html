@@ -1,0 +1,30 @@
+<div class="page">
+    <img src="/www/images/sikulko.png" alt="MŠ A.Bernoláka, Detva">
+    <h1><a href="#/">MŠ A.Bernoláka, Detva</a></h1>
+    <ul>
+        <li>
+            <a href="#/Onas">O nás</a>
+        </li>
+        <li>
+            <a href="#/Oznamy">Oznamy</a>
+        </li>
+        <li>
+            <a href="#/Podujatia/Trieda/-1">Podujatia</a>
+            <ul class="submenu">
+                <li ng-repeat="class in classes track by $index"><a ng-href="#/Podujatia/Trieda/{{class.id}}">{{class.className}}</a></li>
+                <li>
+                    <a ng-href="">Archív</a>
+                    <ul class="subsubmenu">
+                        <li ng-repeat="archive in archives track by $index"><a ng-href="#/Podujatia/Archiv/{{archive.id}}">{{archive.archiveName}}</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="#/Zverejnovanie">Zverejňovanie</a>
+        </li>
+        <li>
+            <a href="#/Kontakty">Kontakty</a>
+        </li>
+    </ul>
+</div>

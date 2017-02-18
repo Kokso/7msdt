@@ -1,0 +1,26 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">{{ modalTitle}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="panel panel-default reorder">
+            <ul class="list-group table-striped table-hover" dnd-list="models.list">
+                <li class="list-group-item" ng-repeat="item in models.list"
+                    dnd-draggable="item"
+                    dnd-moved="models.list.splice($index, 1)"
+                    dnd-effect-allowed="move"
+                    dnd-selected="models.selected = item"
+                    ng-class="{'selected': models.selected === item}">
+                    <strong>{{ item.order}}</strong> {{ item.title}}
+                </li>
+            </ul> 
+        </div>
+        <div class="alert alert-dismissible alert-info inline">
+            <i class="fa fa-info fa-lg"></i>&nbsp;&nbsp; Preusporiadajte elementy v tabuľke kliknutím na element a ťahaním na chcenú pozíciu.
+        </div>
+    </div>
+    <div class ="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="cancelReorderModal()">Zrušiť</button>
+        <button type="submit" class="btn btn-primary" ng-click="saveReorderModal()">Uložiť</button>
+    </div>
+</div>

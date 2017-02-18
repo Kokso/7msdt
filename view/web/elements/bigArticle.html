@@ -1,0 +1,26 @@
+
+<img class="a_logo" ng-src="{{art.titleImage}}" alt=""/>
+<h1 ng-show="art.title != null">{{art.title}}</h1>
+<div ng-bind-html="art.content | sanitize"></div>
+
+<ul class="archiveMenu" ng-show="art.archiveClassMenu.length > 0">
+    <li><a href="#/Podujatia/Archiv/{{art.archiveClassMenu[0].archiveId}}">Spoločné</a></li>
+    <li ng-repeat="archCM in art.archiveClassMenu" ng-include="archCM.element"></li>
+</ul>
+
+<div ng-repeat="jobClass in art.jobsClasses track by $index" ng-include="jobClass.element" class="sub3">    
+</div>
+
+<div class="n_space n_right" ng-show="art.notes.length > 0"></div>
+<div ng-repeat="note in art.notes | orderBy: 'order' track by $index" ng-class-even="'n_right'" ng-class-odd="'n_left'" class="note {{note.colorClass}}" ng-include="note.element">     
+</div>
+
+<div ng-repeat="event in art.events track by $index" class="event" ng-include="event.element">     
+</div>
+
+<p ng-repeat="doc in art.documents | orderBy: 'order' track by $index" class="documents">
+    <a ng-href="{{doc.file}}" target="_blank"><img ng-src="../www/images/pdf.png" alt="">{{doc.title}}</a>
+</p>
+
+<table ng-repeat="cont in art.contacts track by $index" ng-include="cont.element"> 
+</table>

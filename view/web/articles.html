@@ -1,0 +1,33 @@
+
+<div id="content" class="page">
+    <div ng-repeat="art in articles | orderBy: 'order' track by $index" class="article {{art.class}}" ng-include="art.element"> 
+    
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+
+
+<div id="footer">
+    <div class="page footer">
+        <ul>
+            <li>
+                <a href="#/Onas">O nás</a>
+            </li>
+            <li>
+                <a href="#/Oznamy">Oznamy</a>
+            </li>
+            <li>
+                <a href="#/Podujatia">Podujatia</a>
+            </li>
+            <li>
+                <a href="#/Zverejnovanie">Zverejňovanie</a>
+            </li>
+            <li>
+                <a href="#/Kontakty">Kontakty</a>
+            </li>
+        </ul>
+        <p><a href="/Admin" target="_blank">Materská škola A.Bernoláka</a> v Detve © 2013. Publikovanie alebo ďalšie šírenie obsahu je bez písomného súhlasu škôlky zakázané.</p>
+    </div>
+</div>
