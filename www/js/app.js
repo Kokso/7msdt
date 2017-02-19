@@ -48,3 +48,10 @@ app.directive('msheader', function () {
 app.filter('sanitize', function ($sce) {
     return $sce.trustAsHtml;
 });
+
+app.config(function($sceDelegateProvider) {
+  $sceDelegateProvider.resourceUrlWhitelist([
+    'self',
+    'https://www.youtube.com/**'
+  ]);
+});

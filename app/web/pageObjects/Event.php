@@ -9,6 +9,7 @@ class Event {
     public $content;
     public $element;
     public $galery;
+    public $videoGalery;
     
     public function __construct($dbResult) {
         $this->id = $dbResult->id;
@@ -16,6 +17,7 @@ class Event {
         $this->content = $dbResult->content;
         $this->element = "/view/web/elements/event.html";
         $this->galery = $this->GetGalery();
+        $this->videoGalery = $this->GetVideoGalery();
     }
     
     private function GetGalery() {
@@ -26,6 +28,16 @@ class Event {
         }
         
         return $imageList;
+    }
+    
+    private function GetVideoGalery() {
+        $videoList = array();
+        $result = dibi::query("SELECT link FROM `ms_videoGallery` WHERE idEvent = %i", $this->id);
+        foreach ($result as $res) {
+            array_push($videoList, $res->link);
+        }
+        
+        return $videoList;
     }
 }
 

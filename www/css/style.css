@@ -435,6 +435,10 @@ ul.archiveMenu li:hover a{
     margin-left: -30px;
 }
 
+.article iframe.video {
+    margin: 5px;
+}
+
 .article div.sub3 {
     display: inline-block;
     width: 240px;
