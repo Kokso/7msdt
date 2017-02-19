@@ -561,12 +561,15 @@ appAdmin.controller('podujatiaCtrl', function ($scope, $http, $location, $routeP
     };
 
     $scope.getVideoGallery = function (eventId) {
-//        $http.post("/api/admin/getVideoGallery.php", {eventId: eventId})
-//                .success(function (response) {
-//                    ProcessSuccessResponse(response, $scope, $location, AuthError, function () {
-//                        $scope.videoGallery = response.message;
-//                    });
-//                });
+        $http.post("/api/admin/getVideoGallery.php", {eventId: eventId})
+                .success(function (response) {
+                    ProcessSuccessResponse(response, $scope, $location, AuthError, function () {
+                        angular.forEach(response.message, function (video) {
+                            video.link = video.link.replace('watch?v=', 'embed/')
+                        });
+                        $scope.videoGallery = response.message;
+                    });
+                });
     };
 
     $scope.saveVideo = function (form) {
@@ -598,7 +601,7 @@ appAdmin.controller('podujatiaCtrl', function ($scope, $http, $location, $routeP
     $scope.submitted = false;
     $scope.isModalShown = false;
     $scope.event = angular.copy(defaultValues);
-    $scope.video = { link: ""};
+    $scope.video = {link: ""};
 
     $scope.modalTitle = $scope.event.id === 0 ? "Nové podujatie" : "Podujatie - " + $scope.event.name;
 });

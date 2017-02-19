@@ -46,6 +46,13 @@ appAdmin.config(['$routeProvider', '$logProvider', function ($routeProvider, $lo
         $logProvider.debugEnabled(true);
     }]);
 
+appAdmin.config(function($sceDelegateProvider) {
+  $sceDelegateProvider.resourceUrlWhitelist([
+    'self',
+    'https://www.youtube.com/**'
+  ]);
+});
+
 appAdmin.directive('adminHeader', ['$http', '$location', 'AuthError', function ($http, $location, AuthError) {
         return {
             restrict: 'E', //This means that it will be used as an attribute and NOT as an element.

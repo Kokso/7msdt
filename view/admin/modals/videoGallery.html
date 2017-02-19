@@ -28,13 +28,13 @@
             </div>
 
         </div>
-        <!--        <div class="modal-footer">
-                    <div class="gallery">
-                        <div class="image" ng-repeat="image in gallery">
-                            <button type="button" class="btn btn-primary" ng-click="deleteImage(image.id)" data-placement="right" title="Zmazať obrázok" tooltip><i class="fa fa-ban"></i></button>
-                            <img src="{{image.thumb}}" alt="">
-                        </div>
-                    </div>
-                </div>-->
+        <div class="modal-footer">
+            <div class="gallery">
+                <div class="image" ng-repeat="video in videoGallery">
+                    <button type="button" class="btn btn-primary" ng-click="deleteVideo(image.id)" data-placement="right" title="Zmazať video" tooltip><i class="fa fa-ban"></i></button>
+                    <iframe width="420" height="315" ng-src="{{video.link}}" target="_parent"></iframe>
+                </div>
+            </div>
+        </div>
     </form>
 </div>

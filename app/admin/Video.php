@@ -15,7 +15,7 @@ class Video {
      * Save video to DB
      * @param type $video JSON class object
      */
-    public function Save($video) {
+    public function Save($video) {     
         $arr = $this->VideoToArray($video);
         return $this->videoGalleryDal->AddVideo($arr);
     }
