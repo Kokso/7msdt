@@ -42,15 +42,18 @@ appAdmin.config(['$routeProvider', '$logProvider', function ($routeProvider, $lo
                 when('/Zverejnovanie/:type', {
                     templateUrl: $rootDir + '/view/admin/zverejnovanie.html',
                     controller: 'zverejnovanieCtrl'}).
+                when('/Help', {
+                    templateUrl: $rootDir + '/view/admin/help/help.html',
+                    controller: 'helpCtrl'}).
                 otherwise({redirectTo: '/'});
         $logProvider.debugEnabled(true);
     }]);
 
-appAdmin.config(function($sceDelegateProvider) {
-  $sceDelegateProvider.resourceUrlWhitelist([
-    'self',
-    'https://www.youtube.com/**'
-  ]);
+appAdmin.config(function ($sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+        'self',
+        'https://www.youtube.com/**'
+    ]);
 });
 
 appAdmin.directive('adminHeader', ['$http', '$location', 'AuthError', function ($http, $location, AuthError) {
@@ -119,14 +122,14 @@ appAdmin.filter('sanitize', function ($sce) {
     return $sce.trustAsHtml;
 });
 
-appAdmin.directive('tooltip', function(){
+appAdmin.directive('tooltip', function () {
     return {
         restrict: 'A',
-        link: function(scope, element, attrs){
-            $(element).hover(function(){
+        link: function (scope, element, attrs) {
+            $(element).hover(function () {
                 // on mouseenter
                 $(element).tooltip('show');
-            }, function(){
+            }, function () {
                 // on mouseleave
                 $(element).tooltip('hide');
             });

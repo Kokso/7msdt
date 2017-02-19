@@ -577,28 +577,30 @@ appAdmin.controller('podujatiaCtrl', function ($scope, $http, $location, $routeP
         if (form.$valid) {
             if ($scope.eventId !== -1) {
 
-                if ($scope.video.link.startsWith("https://www.youtube.com/watch?v=")) {
+                if ($scope.video.link.startsWith("https://youtu.be/")) {
+                    $scope.video.link = $scope.video.link.replace('https://youtu.be/', 'https://www.youtube.com/embed/');
+                } else if ($scope.video.link.startsWith("https://www.youtube.com/watch?v=")) {
                     $scope.video.link = $scope.video.link.replace('watch?v=', 'embed/');
+                } else {
+                    $scope.errVideoMessage = "Video odkaz má nesprávny formát. Správny príklad: 'https://www.youtube.com/watch?v=ASsdaSDFgDasd'";
+                    $scope.submitted = false;
+                    return;
+                }
 
-                    $http.post("/api/admin/saveVideo.php", {link: $scope.video.link, eventId: $scope.eventId})
-                            .success(function (response) {
-                                ProcessSuccessResponse(response, $scope, $location, AuthError, function () {
-                                    $scope.video.link = "";
-                                    setTimeout($scope.getVideoGallery($scope.eventId), 1000);
-                                });
-
-                                $scope.errVideoMessage = "";
-                                $scope.submitted = false;
-                            })
-                            .error(function () {
-                                $scope.errVideoMessage = "Video sa nepodarilo uložiť.";
-                                $scope.submitted = false;
+                $http.post("/api/admin/saveVideo.php", {link: $scope.video.link, eventId: $scope.eventId})
+                        .success(function (response) {
+                            ProcessSuccessResponse(response, $scope, $location, AuthError, function () {
+                                $scope.video.link = "";
+                                setTimeout($scope.getVideoGallery($scope.eventId), 1000);
                             });
 
-                } else {
-                    $scope.errVideoMessage = "Video odkaz má nesprávny formát. Správny príklad: 'https://www.youtube.com/watch?v=asdaSDDDDasd'" ;
-                    $scope.submitted = false;
-                }
+                            $scope.errVideoMessage = "";
+                            $scope.submitted = false;
+                        })
+                        .error(function () {
+                            $scope.errVideoMessage = "Video sa nepodarilo uložiť.";
+                            $scope.submitted = false;
+                        });
             }
         }
     };
@@ -930,6 +932,10 @@ appAdmin.controller('kontaktyCtrl', function ($scope, $http, $location, AuthErro
     };
 
     $scope.loadContacts();
+});
+
+appAdmin.controller('helpCtrl', function ($scope, $http, $location, AuthError) {
+
 });
 
 
