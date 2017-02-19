@@ -292,7 +292,7 @@ appAdmin.controller('oznamyCtrl', function ($scope, $http, $location, AuthError,
                     $scope.hideFileChooser = false;
                     $scope.fileSending = false;
                     ProcessSuccessResponse(result.data, $scope, $location, AuthError, function () {
-                        $scope.noteFile = result.data.message.filePath;           
+                        $scope.noteFile = result.data.message.filePath;
                     });
 
                     if (result.data.error !== 0) {
@@ -312,7 +312,7 @@ appAdmin.controller('oznamyCtrl', function ($scope, $http, $location, AuthError,
             });
         }
     };
-    
+
     $scope.changeFile = function (elm) {
         $scope.files = elm.files;
         $scope.$apply();
@@ -365,6 +365,7 @@ appAdmin.controller('podujatiaCtrl', function ($scope, $http, $location, $routeP
     var classId = $routeParams.class;
     var eventModalDialog = "/view/admin/modals/podujatia.html";
     var galleryModalDialog = "/view/admin/modals/gallery.html";
+    var videoGalleryModalDialog = "/view/admin/modals/videoGallery.html";
 
     var defaultValues = {
         id: 0,
@@ -543,12 +544,61 @@ appAdmin.controller('podujatiaCtrl', function ($scope, $http, $location, $routeP
                 });
     };
 
+    $scope.toggleVideoGallery = function () {
+        $scope.modalDialog = videoGalleryModalDialog;
+        $scope.isModalShown = !$scope.isModalShown;
+        $scope.videoGallery = [];
+        $scope.video.link = "";
+        $scope.eventId = -1;
+        ResetMessages($scope);
+    };
+
+    $scope.openVideoGallery = function (eventId, eventTitle) {
+        $scope.toggleVideoGallery();
+        $scope.eventId = eventId;
+        $scope.getVideoGallery($scope.eventId);
+        $scope.modalTitle = eventTitle;
+    };
+
+    $scope.getVideoGallery = function (eventId) {
+//        $http.post("/api/admin/getVideoGallery.php", {eventId: eventId})
+//                .success(function (response) {
+//                    ProcessSuccessResponse(response, $scope, $location, AuthError, function () {
+//                        $scope.videoGallery = response.message;
+//                    });
+//                });
+    };
+
+    $scope.saveVideo = function (form) {
+        ResetMessages($scope);
+        $scope.submitted = true;
+
+        if (form.$valid) {
+            if ($scope.eventId !== -1) {
+                $http.post("/api/admin/saveVideo.php", {link: $scope.video.link, eventId: $scope.eventId})
+                        .success(function (response) {
+                            ProcessSuccessResponse(response, $scope, $location, AuthError, function () {
+                                $scope.video.link = "";
+                                setTimeout($scope.getVideoGallery($scope.eventId), 1000);
+                            });
+
+                            $scope.submitted = false;
+                        })
+                        .error(function () {
+                            $scope.errVideoMessage = "Video sa nepodarilo uložiť.";
+                            $scope.submitted = false;
+                        });
+            }
+        }
+    };
+
     $scope.getEvents();
     $scope.getClass(classId);
 
     $scope.submitted = false;
     $scope.isModalShown = false;
     $scope.event = angular.copy(defaultValues);
+    $scope.video = { link: ""};
 
     $scope.modalTitle = $scope.event.id === 0 ? "Nové podujatie" : "Podujatie - " + $scope.event.name;
 });

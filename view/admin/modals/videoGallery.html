@@ -1,0 +1,40 @@
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title">Video galéria podujatia <b>{{ modalTitle}}</b></h4>
+    </div>
+    <form class="form-horizontal" name="formVideo" novalidate>
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="inputVideo" class="col-lg-2 control-label">Video</label>
+                <div class="col-lg-10">
+                    <input type="text" class="form-control" id="inputVideo" name="videoLink" ng-model="video.link" required="">
+                    <span class="text-danger" ng-show="submitted && formVideo.videoLink.$error.required">Link videa musí byť vyplnený</span>
+                </div>
+            </div> 
+
+            <div class="alert alert-dismissible alert-danger" ng-show="errVideoMessage" ng-bind-html="errVideoMessage | sanitize">
+            </div>
+
+            <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                    <button type="button" class="btn btn-default" ng-click="toggleModal()">Zavrieť</button>
+                    <button type="submit" class="btn btn-primary" ng-click="saveVideo(formVideo)">Vložiť</button>
+                </div>
+            </div>
+
+        </div>
+        <!--        <div class="modal-footer">
+                    <div class="gallery">
+                        <div class="image" ng-repeat="image in gallery">
+                            <button type="button" class="btn btn-primary" ng-click="deleteImage(image.id)" data-placement="right" title="Zmazať obrázok" tooltip><i class="fa fa-ban"></i></button>
+                            <img src="{{image.thumb}}" alt="">
+                        </div>
+                    </div>
+                </div>-->
+    </form>
+</div>

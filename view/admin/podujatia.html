@@ -26,12 +26,18 @@
             <th></th>
             <th></th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="event in allEvents" >
             <td class="table_icon">{{ event.order}}</td>
             <td>{{ event.title}}</td>
+            <td class="table_icon">
+                <button type="button" class="btn btn-primary btn-xs" ng-click="openVideoGallery(event.id, event.title)" data-placement="bottom" title="Upraviť video galériu" tooltip>
+                    <i class="fa fa-video-camera"></i>
+                </button>
+            </td>
             <td class="table_icon">
                 <button type="button" class="btn btn-primary btn-xs" ng-click="openGallery(event.id, event.title)" data-placement="bottom" title="Upraviť galériu" tooltip>
                     <i class="fa fa-picture-o"></i>
