@@ -32,7 +32,7 @@ class Event {
     
     private function GetVideoGalery() {
         $videoList = array();
-        $result = dibi::query("SELECT link FROM `ms_videoGallery` WHERE idEvent = %i", $this->id);
+        $result = dibi::query("SELECT link FROM `ms_videogallery` WHERE idEvent = %i", $this->id);
         foreach ($result as $res) {
             array_push($videoList, $res->link);
         }
