@@ -549,6 +549,7 @@ appAdmin.controller('podujatiaCtrl', function ($scope, $http, $location, $routeP
         $scope.isModalShown = !$scope.isModalShown;
         $scope.videoGallery = [];
         $scope.video.link = "";
+        $scope.errVideoMessage = "";
         $scope.eventId = -1;
         ResetMessages($scope);
     };
@@ -564,9 +565,6 @@ appAdmin.controller('podujatiaCtrl', function ($scope, $http, $location, $routeP
         $http.post("/api/admin/getVideoGallery.php", {eventId: eventId})
                 .success(function (response) {
                     ProcessSuccessResponse(response, $scope, $location, AuthError, function () {
-                        angular.forEach(response.message, function (video) {
-                            video.link = video.link.replace('watch?v=', 'embed/')
-                        });
                         $scope.videoGallery = response.message;
                     });
                 });
@@ -578,21 +576,40 @@ appAdmin.controller('podujatiaCtrl', function ($scope, $http, $location, $routeP
 
         if (form.$valid) {
             if ($scope.eventId !== -1) {
-                $http.post("/api/admin/saveVideo.php", {link: $scope.video.link, eventId: $scope.eventId})
-                        .success(function (response) {
-                            ProcessSuccessResponse(response, $scope, $location, AuthError, function () {
-                                $scope.video.link = "";
-                                setTimeout($scope.getVideoGallery($scope.eventId), 1000);
+
+                if ($scope.video.link.startsWith("https://www.youtube.com/watch?v=")) {
+                    $scope.video.link = $scope.video.link.replace('watch?v=', 'embed/');
+
+                    $http.post("/api/admin/saveVideo.php", {link: $scope.video.link, eventId: $scope.eventId})
+                            .success(function (response) {
+                                ProcessSuccessResponse(response, $scope, $location, AuthError, function () {
+                                    $scope.video.link = "";
+                                    setTimeout($scope.getVideoGallery($scope.eventId), 1000);
+                                });
+
+                                $scope.errVideoMessage = "";
+                                $scope.submitted = false;
+                            })
+                            .error(function () {
+                                $scope.errVideoMessage = "Video sa nepodarilo uložiť.";
+                                $scope.submitted = false;
                             });
 
-                            $scope.submitted = false;
-                        })
-                        .error(function () {
-                            $scope.errVideoMessage = "Video sa nepodarilo uložiť.";
-                            $scope.submitted = false;
-                        });
+                } else {
+                    $scope.errVideoMessage = "Video odkaz má nesprávny formát. Správny príklad: 'https://www.youtube.com/watch?v=asdaSDDDDasd'" ;
+                    $scope.submitted = false;
+                }
             }
         }
+    };
+
+    $scope.deleteVideo = function (id) {
+        $http.post("/api/admin/deleteVideo.php", {id: id})
+                .success(function (response) {
+                    ProcessSuccessResponse(response, $scope, $location, AuthError, function () {
+                        $scope.getVideoGallery($scope.eventId);
+                    });
+                });
     };
 
     $scope.getEvents();

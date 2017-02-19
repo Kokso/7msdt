@@ -22,4 +22,11 @@ class VideoGalleryDal {
 
         return $videoList;
     }
+    
+    public function DeleteVideo($id){
+        $delCount = dibi::query("DELETE FROM `ms_videoGallery` WHERE `id`=%i", $id);
+        if ($delCount != 1) {
+            throw new Exception("Delete of video failed");
+        }
+    }
 }

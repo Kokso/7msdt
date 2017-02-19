@@ -10,7 +10,7 @@
     <form class="form-horizontal" name="formVideo" novalidate>
         <div class="modal-body">
             <div class="form-group">
-                <label for="inputVideo" class="col-lg-2 control-label">Video</label>
+                <label for="inputVideo" class="col-lg-2 control-label">Video odkaz</label>
                 <div class="col-lg-10">
                     <input type="text" class="form-control" id="inputVideo" name="videoLink" ng-model="video.link" required="">
                     <span class="text-danger" ng-show="submitted && formVideo.videoLink.$error.required">Link videa musí byť vyplnený</span>
@@ -31,7 +31,7 @@
         <div class="modal-footer">
             <div class="gallery">
                 <div class="image" ng-repeat="video in videoGallery">
-                    <button type="button" class="btn btn-primary" ng-click="deleteVideo(image.id)" data-placement="right" title="Zmazať video" tooltip><i class="fa fa-ban"></i></button>
+                    <button type="button" class="btn btn-primary" ng-click="deleteVideo(video.id)" data-placement="right" title="Zmazať video" tooltip><i class="fa fa-ban"></i></button>
                     <iframe width="420" height="315" ng-src="{{video.link}}" target="_parent"></iframe>
                 </div>
             </div>
